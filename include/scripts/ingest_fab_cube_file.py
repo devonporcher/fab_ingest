@@ -67,7 +67,7 @@ def ingest_fab_cube_file(file=None, object_type=None, verbose=False):
     list_columns = ['types', 'art_variations']
     for col in list_columns:
         if col in df.columns:
-            df[col] = df[col].str.split(',').apply(json.dumps).where(df[col].notnull(), None)
+            df[col] = df[col].str.split(', ').apply(json.dumps).where(df[col].notnull(), None)
 
     engine = get_engine()
     with engine.connect() as connection:
